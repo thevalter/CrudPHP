@@ -49,7 +49,5 @@ if($_POST["action"] == "atualizar"){
 	}
 	
 }
-
-/*  */
 ?>
 

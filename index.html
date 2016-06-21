@@ -34,32 +34,33 @@
     
     </script>
 </head>
-<body onload="carregarItens()">
+<body onload="">
     <div class="container">
         <div class="row">
             <h3>PHP CRUD Grid</h3>
             <input id="q" type="text" name="">
-            <input type="button" class='btn btn-success' onclick="inserirLinhaTabela()" value="Busca">
+            <input type="button" class='btn btn-success' onclick="carregarItens()" value="Busca">
         </div>
-         
+        
         <div class="row">    
             <h2></h2>
-            <section>
-                <table id="minhaTabela" class="table table-striped table-bordered">
-                    <caption><h3>Cadastro de Alunos</h3></caption>
-                    <thead>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Login</th>
-                        <th>Senha</th>
-                        <th>Carteira</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>Data de Nascimento</th>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </section>   
+            <button type="button" onclick="novo()" class="btn btn-lg btn-default">New</button>
+            <button type="button" onclick="read()" class="btn btn-lg btn-default">Read</button>
+            <button type="button" onclick="dropRow()" class="btn btn-lg btn-danger">Delete</button>
+            <table id="minhaTabela" class="table table-striped table-bordered">
+                <thead id="theadTabela">
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Senha</th>
+                    <th>Carteira</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Data de Nascimento</th>
+                </thead>
+                <tbody id="bodyTabela"></tbody>
+            </table>
         </div>
     </div>
 <script type="text/javascript">

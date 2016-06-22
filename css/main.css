@@ -1,13 +1,17 @@
 /*Estilização dos campos edit dentro da table*/
 
 #minhaTabela .celulaEmEdicao input[type=text]{
-    width:80%;
+   	width:80%;
     border:0;
     background-color:rgb(255,253,210);  
 }
 
-#minhaTabela input[type=text]{
-    width:80%;
-    border:0;
-    background-color:rgb(255,253,210);  
+.div_alteracao{
+	width:960px;
+	height:500px;
+	background-color:#34495e;
+	/*z-index:100; não serviu para nada*/
+	position:fixed;
+	top:159px;
+	visibility: hidden;
 }

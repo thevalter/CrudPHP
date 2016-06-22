@@ -213,8 +213,11 @@ function dropRow() {
 	}
 }
 
-function read(aluno){
-	var alunos = [];
+function readMetodo(){
+	div = document.getElementById("divRead");
+	div.style.visibility = "visible";
+
+	/*var alunos = [];
 	var aluno = {
 	    'nome': table.rows[i].cells[2].innerHTML, // valor da coluna Produto
 	    'login': table.rows[i].cells[3].innerHTML // Valor da coluna Quantidade
@@ -222,5 +225,5 @@ function read(aluno){
   	alunos.push(aluno);
   	read(alunos);
 
-	alert(pedido[0].nome);
+	alert(pedido[0].nome);*/
 }

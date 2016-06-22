@@ -1,5 +1,5 @@
 <?php
-header("Content-Type:" . "text/plain");
+header("Content-Type:" . "text/plain"); //Facilitar a vizualização do json
 /*Conexão Banco de Dados*/
 $servername = "localhost";
 $username = "root";

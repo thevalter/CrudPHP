@@ -202,8 +202,8 @@ function dropRow() {
 			}
 			var id = table.rows[i].cells[1].innerHTML; //coluna id da linha selecionada
 			console.log(id);
-			//table.deleteRow(i); //Metodo javascript
-			//deletar(id);
+			table.deleteRow(i); //Metodo javascript
+			deletar(id);
 			rowCount--;
 			i--;
 		}
@@ -213,7 +213,7 @@ function dropRow() {
 	}
 }
 
-function read(pedido){
+function read(aluno){
 	var alunos = [];
 	var aluno = {
 	    'nome': table.rows[i].cells[2].innerHTML, // valor da coluna Produto
@@ -221,6 +221,6 @@ function read(pedido){
   	};
   	alunos.push(aluno);
   	read(alunos);
-  	
+
 	alert(pedido[0].nome);
 }

@@ -33,12 +33,12 @@
     
     </script>
 </head>
-<body>
+<body onload="carregarItens()">
     <div class="container">
         <div class="row">
             <h3>PHP CRUD Grid</h3>
             <input id="q" type="text" name="" class="form-control">
-            <input type="button" class='btn btn-success' onclick="carregarItens()" value="Busca">
+            <input type="button" class='btn btn-success' onclick="buscaPorId()" value="Busca">
         </div>
         
         <div class="row">    

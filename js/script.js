@@ -65,7 +65,7 @@ function alterarItensTable(){ //Pegar valor elementos td da tabela
         var idTd = $(this).attr("id"); //Pegar o atributo id da td alterada;
         
         $(this).addClass("celulaEmEdicao");
-        $(this).html("<input type='text' value='" + conteudoOriginal + "' />");
+        $(this).html("<input class='form-control' type='text' value='" + conteudoOriginal + "' />");
         $(this).children().first().focus();
 
         $(this).children().first().keypress(function (e) {
@@ -217,13 +217,50 @@ function readMetodo(){
 	div = document.getElementById("divRead");
 	div.style.visibility = "visible";
 
-	/*var alunos = [];
-	var aluno = {
-	    'nome': table.rows[i].cells[2].innerHTML, // valor da coluna Produto
-	    'login': table.rows[i].cells[3].innerHTML // Valor da coluna Quantidade
-  	};
-  	alunos.push(aluno);
-  	read(alunos);
+	try {
+	var table = document.getElementById("minhaTabela");
+	var rowCount = table.rows.length;
+	for(var i = 0; i < rowCount; i++ ) {
+		var row = table.rows[i]; //Pegar linha da tabela
+		var chkbox = row.cells[0].childNodes[0]; //Pegar checkbox dentro da "td"
+		if(null != chkbox && true == chkbox.checked) { //Saber se esta check
+			chkbox.checked = false;
 
-	alert(pedido[0].nome);*/
+			var inputNome = document.getElementById("nome");
+			var inputLogin = document.getElementById("login");
+			var inputSenha = document.getElementById("senha");
+			var inputCarteira = document.getElementById("carteira");
+			var inputCidade = document.getElementById("cidade");
+			var inputEstado = document.getElementById("estado");
+			var inputNascimento = document.getElementById("data_nascimento");
+			
+			var id = table.rows[i].cells[1].innerHTML; //coluna id da linha selecionada
+			var nome = table.rows[i].cells[2].innerHTML; 
+			var login = table.rows[i].cells[3].innerHTML;
+			var senha = table.rows[i].cells[4].innerHTML;
+			var carteira = table.rows[i].cells[5].innerHTML;
+			var cidade = table.rows[i].cells[6].innerHTML; 
+			var estado = table.rows[i].cells[7].innerHTML; 
+			var data_nascimento = table.rows[i].cells[8].innerHTML;
+			
+			inputNome.value = nome;
+			inputLogin.value = login;
+			inputSenha.value = senha;
+			inputCarteira.value = carteira;
+			inputCidade.value = cidade;
+			inputEstado.value = estado;
+			inputNascimento.value = data_nascimento;
+			rowCount--;
+			i--;
+		}
+	}
+	}catch(e) {
+		alert(e);
+	}
+	
+	var btn = document.getElementById("salvar");
+	btn.addEventListener("click", function(){
+		div = document.getElementById("divRead");
+		div.style.visibility = "hidden";
+	});
 }

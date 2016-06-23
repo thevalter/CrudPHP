@@ -7,11 +7,11 @@
 }
 
 .div_alteracao{
-	width:960px;
-	height:500px;
-	background-color:#34495e;
+	width:1170px;
+	height:100%;
+	background-color:white;
 	/*z-index:100; não serviu para nada*/
 	position:fixed;
-	top:159px;
+	top:140px;
 	visibility: hidden;
 }

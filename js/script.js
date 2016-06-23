@@ -127,7 +127,7 @@ function novoAluno() {
 	
 		div = document.getElementById("divRead");
 		div.style.visibility = "hidden";
-		//console.log(inputNome + inputLogin + inputSenha + inputCarteira + inputCidade + inputEstado + inputNascimento);
+		
 		//Metodo Ajax para inserir
 		salvarAluno(inputNome,inputLogin,inputSenha,inputCarteira,inputCidade,
 		inputEstado,inputNascimento);
@@ -171,7 +171,8 @@ function montandoTabela(retorno){
 	var keys = Object.keys(retorno[0]); //Pegar as keys do objeto javascript
 	table = document.getElementById("minhaTabela"); //Pegar tabela pelo id
 	tbody = document.getElementById("bodyTabela"); //Pegar tbody pelo id
-	for (var i = 0; i < retorno.length; i++) {
+	tbody.innerHTML = "";
+	for (var i = 0; i < 10; i++) {
     	var tr = document.createElement("tr");
     	
     	//checkbox dentro da tabela dinamico

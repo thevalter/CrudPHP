@@ -17,7 +17,7 @@ if (!$con) {
 //echo "Connected successfully";
 /*Conexão Banco de Dados*/
 if($_POST["action"] == "list"){
-	$query = "SELECT * FROM aluno";
+	$query = "SELECT * FROM aluno ORDER BY id DESC";
 	$result = $con->query($query);
 	while($row = $result->fetch_assoc()){	
 		$alunos[] = $row;

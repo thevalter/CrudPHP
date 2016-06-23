@@ -115,7 +115,7 @@ function novoAluno() {
 	div = document.getElementById("divRead");
 	div.style.visibility = "visible";
 
-	var btn = document.getElementById("salvar");
+	btn = document.getElementById("salvar");
 	btn.addEventListener("click", function(){
 		var inputNome = document.getElementById("nome").value;
 		var inputLogin = document.getElementById("login").value;
@@ -124,13 +124,15 @@ function novoAluno() {
 		var inputCidade = document.getElementById("cidade").value;
 		var inputEstado = document.getElementById("estado").value;
 		var inputNascimento = document.getElementById("data_nascimento").value;
-	
-		div = document.getElementById("divRead");
-		div.style.visibility = "hidden";
 		
 		//Metodo Ajax para inserir
 		salvarAluno(inputNome,inputLogin,inputSenha,inputCarteira,inputCidade,
 		inputEstado,inputNascimento);
+
+		//Esconder a div flutuante
+		div = document.getElementById("divRead");
+		div.style.visibility = "hidden";
+		alert('');
 	});
 } 
 
@@ -234,7 +236,6 @@ function readMetodo(){
 		var chkbox = row.cells[0].childNodes[0]; //Pegar checkbox dentro da "td"
 		if(null != chkbox && true == chkbox.checked) { //Saber se esta check
 			chkbox.checked = false;
-
 			//Pegando os inputs
 			var inputNome = document.getElementById("nome");
 			var inputLogin = document.getElementById("login");
@@ -269,10 +270,9 @@ function readMetodo(){
 	}catch(e) {
 		alert(e);
 	}
-	
-	var btn = document.getElementById("salvar");
-	btn.addEventListener("click", function(){
-		div = document.getElementById("divRead");
-		div.style.visibility = "hidden";
-	});
+}
+
+function cancelar(){
+	div = document.getElementById("divRead");
+	div.style.visibility = "hidden";
 }

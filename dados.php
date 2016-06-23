@@ -49,5 +49,28 @@ if($_POST["action"] == "atualizar"){
 	}
 	
 }
+
+//Metodo insert
+if($_POST["action"] == "inserir"){
+	$nome = $_POST["nome"];
+	$login = $_POST["login"];
+	$senha = $_POST["senha"];
+	$carteira = $_POST["carteira"];
+	$cidade = $_POST["cidade"];
+	$estado = $_POST["estado"];
+	$data_nascimento = $_POST["data_nascimento"];
+
+	
+	//$query = "INSERT INTO aluno(nome,login,senha,carteira,cidade,estado,data_nascimento) values($nome, $login, $senha, $carteira, $cidade, $estado, $data_nascimento)";
+	$query = "INSERT INTO aluno (`nome`,`login`,`senha`,`carteira`,`cidade`,`estado`,`data_nascimento`) VALUES ('".$nome."', '".$login."', '".$senha."', '".$carteira."', '".$cidade."', '".$estado."', '".$data_nascimento."')";
+	$result = $con->query($query);
+	if($result){
+		echo '[{"mensagem": "Inserido com sucesso!"';
+		echo '}]';	
+	}else{
+		echo '[{"mensagem": "Erro ao inserir!"';
+		echo '}]';		
+	}
+}
 ?>
 

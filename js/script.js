@@ -32,33 +32,7 @@ function carregarItens(){
 }
 
 function alterarItensTable(){ //Pegar valor elementos td da tabela
-	//var alteracao = prompt("Digite a alteração");
-
-	/*
-	
-	for(i = 0; i < 7; i++){
-		tr[1].getElementsByTagName("td")[i].innerHTML=alteracao;
-	} */
-	/*
-	tr = document.getElementsByTagName("tr");
-	td = document.getElementsByTagName('td');
-	alert(tr[1].getElementsByTagName('td')[1].innerHTML);
-
-	for(i=0;i<td.length;i++){
-		td[i].onclick=function(){this.innerHTML=prompt("Digite a alteração",this.innerHTML)}
-	}
-	*/
-
-	/* Pegar id da linha selecionada
-	$(function () {
-    $("tr").dblclick(function () { 
-    	var id = $(this).attr('id');
-    	alert(id);
-
-    });
-    */
-
-    $("td").dblclick(function () {
+	$("td").dblclick(function () {
         var conteudoOriginal = $(this).text();
         
         var nameTd = $(this).attr("name"); //Pegar o atributo name da td alterada.
@@ -137,44 +111,78 @@ function deletar(id){ //Adicionar um novo evento que será chamado quando clicar
 }
 
 //Utilizado para cadastrar novos alunos.
-function novo() {
+function novoAluno() {
+	div = document.getElementById("divRead");
+	div.style.visibility = "visible";
 
-    // Captura a referência da tabela com id “minhaTabela”
-    var table = document.getElementById("minhaTabela");
-    // Captura a quantidade de linhas já existentes na tabela
-    var numOfRows = table.rows.length;
-    // Captura a quantidade de colunas da última linha da tabela
-    var numOfCols = table.rows[numOfRows-1].cells.length;
-
-    // Insere uma linha no inicio da tabela da tabela.
-    var newRow = table.insertRow(1);
-
-    // Faz um loop para criar as colunas
-    for (var j = 0; j < numOfCols; j++) {
-        // Insere uma coluna na nova linha 
-        newCell = newRow.insertCell(j);
-        // Insere um conteúdo na coluna
-        //newCell.innerHTML = "Linha "+ numOfRows + " -Coluna "+ j;
-        newCell.innerHTML = "<input type='text'/>" //insere um input no conteudo da coluna
-    }
+	var btn = document.getElementById("salvar");
+	btn.addEventListener("click", function(){
+		var inputNome = document.getElementById("nome").value;
+		var inputLogin = document.getElementById("login").value;
+		var inputSenha = document.getElementById("senha").value;
+		var inputCarteira = document.getElementById("carteira").value;
+		var inputCidade = document.getElementById("cidade").value;
+		var inputEstado = document.getElementById("estado").value;
+		var inputNascimento = document.getElementById("data_nascimento").value;
+	
+		div = document.getElementById("divRead");
+		div.style.visibility = "hidden";
+		//console.log(inputNome + inputLogin + inputSenha + inputCarteira + inputCidade + inputEstado + inputNascimento);
+		//Metodo Ajax para inserir
+		salvarAluno(inputNome,inputLogin,inputSenha,inputCarteira,inputCidade,
+		inputEstado,inputNascimento);
+	});
 } 
+
+function salvarAluno(nome,login,senha,carteira,cidade,estado,data_nascimento){
+	var url = "dados.php";
+	$.ajax({
+		url: url,
+		cache: false,
+		type: "POST",
+		dataType: "json",
+		data: {	"nome":nome, 
+				"login":login, 
+				"senha":senha, 
+				"carteira":carteira, 
+				"cidade":cidade, 
+				"estado":estado,
+				"data_nascimento":data_nascimento,
+				"action": "inserir"
+		},
+		beforeSend: function(){
+			$("h2").html("Inserindo...");	
+		},
+		error: function(){
+			$("h2").html("Há algum problema com a base de dados");	
+		},
+		success: function(retorno){
+			if(retorno[0].erro){
+				$("h2").html(retorno[0].erro);
+			}else{
+				$("h2").html(retorno[0].mensagem);
+			}
+		}
+	});
+}
+
 
 function montandoTabela(retorno){
 	var keys = Object.keys(retorno[0]); //Pegar as keys do objeto javascript
 	table = document.getElementById("minhaTabela"); //Pegar tabela pelo id
 	tbody = document.getElementById("bodyTabela"); //Pegar tbody pelo id
-
-	for (var i=0;i<10;i++) {
+	for (var i = 0; i < retorno.length; i++) {
     	var tr = document.createElement("tr");
     	
+    	//checkbox dentro da tabela dinamico
     	chkbox = document.createElement("input"); //criando input checkbox
 		chkbox.type = "checkbox";
     	var x = tr.insertCell(0); //inserindo colunas em todas as tr
     	x.appendChild(chkbox); //inserindo checkboxs em todas as colunas
         
-        for(var j=0;j<8;j++){
+        for(var j = 0; j < 8; j++){
             var td = document.createElement("td");
-            var texto=document.createTextNode(retorno[i][keys[j]]);
+            var texto = document.createTextNode(retorno[i][keys[j]]);
             td.setAttribute("name", keys[j]); //Adicionando name para todas as tds.
             td.setAttribute("id", retorno[i].id); //Adicionando id para todas as tds.
             td.appendChild(texto);
@@ -201,7 +209,7 @@ function dropRow() {
 				break;
 			}
 			var id = table.rows[i].cells[1].innerHTML; //coluna id da linha selecionada
-			console.log(id);
+			//console.log(id);
 			table.deleteRow(i); //Metodo javascript
 			deletar(id);
 			rowCount--;
@@ -226,6 +234,7 @@ function readMetodo(){
 		if(null != chkbox && true == chkbox.checked) { //Saber se esta check
 			chkbox.checked = false;
 
+			//Pegando os inputs
 			var inputNome = document.getElementById("nome");
 			var inputLogin = document.getElementById("login");
 			var inputSenha = document.getElementById("senha");
@@ -234,6 +243,7 @@ function readMetodo(){
 			var inputEstado = document.getElementById("estado");
 			var inputNascimento = document.getElementById("data_nascimento");
 			
+			//pegando os valores da tabela inserindo em variaveis
 			var id = table.rows[i].cells[1].innerHTML; //coluna id da linha selecionada
 			var nome = table.rows[i].cells[2].innerHTML; 
 			var login = table.rows[i].cells[3].innerHTML;
@@ -243,6 +253,7 @@ function readMetodo(){
 			var estado = table.rows[i].cells[7].innerHTML; 
 			var data_nascimento = table.rows[i].cells[8].innerHTML;
 			
+			//Adicionando valor das variaveias ao value input
 			inputNome.value = nome;
 			inputLogin.value = login;
 			inputSenha.value = senha;

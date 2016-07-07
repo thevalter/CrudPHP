@@ -116,6 +116,7 @@ function novoAluno() {
 	div.style.visibility = "visible";
 
 	btn = document.getElementById("salvar");
+
 	btn.addEventListener("click", function(){
 		var inputNome = document.getElementById("nome").value;
 		var inputLogin = document.getElementById("login").value;
@@ -132,7 +133,7 @@ function novoAluno() {
 		//Esconder a div flutuante
 		div = document.getElementById("divRead");
 		div.style.visibility = "hidden";
-		alert('');
+		alert('repetindo essa pest');
 	});
 } 
 
@@ -277,41 +278,7 @@ function cancelar(){
 	div.style.visibility = "hidden";
 }
 
-function buscaPorId(){
-	var query = document.getElementById("q").value;
-	//Recarregar a tabela
-	try {
-	//console.log("test");
-	var table = document.getElementById("minhaTabela");
-	var rowCount = table.rows.length; //para limitar o for dinamicamente
-	var tbody = document.getElementById("bodyTabela"); //Pegar tbody pelo id
-	
-	for(var i = 0; i < rowCount; i++ ) {
-		var row = table.rows[i]; //Pegar linha da tabela com todas as tds
-		var nome = row.cells[2].innerHTML; //Pegando todos os valores da segunda linha
-		if(nome == query) { //Saber se o nome que ele digitou é o mesmo da tabela
-			
-			var tr = document.getElementsByTagName("tr"); //Criando um novo tr
-			for (var j = 1; j < tr.length; j++) {
-				tr[j].style.display = "none";
-			}
-			tr[i].style.display = "";
-			//tr = row.innerHTML;
-			rowCount--;
-			i--;
-		}
-	}
-	}catch(e) {
-		//console.log(e);
-	}
 
-	if("" == query){
-		var tr = document.getElementsByTagName("tr"); //Criando um novo tr
-		for (var j = 1; j < tr.length; j++) {
-			tr[j].style.display = "";
-		}
-	}
-}
 
 $(function(){
     $(".input-search").keyup(function(){

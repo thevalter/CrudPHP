@@ -1,0 +1,6 @@
+{
+  "name": "Crudphp",
+  "tagline": "colocando conhecimentos em pratica, com js, css, html, php e frameworks.",
+  "body": "# CrudPHP HTML5/CSS3/JAVACRIPT/PHP\r\nColocando conhecimentos em pratica, com js, css, html, php, bootstrap.\r\n\r\nTabela com bootstrap, formulario responsivo para vizualização/edição, todas as operações do crud (insert, delete, update, list) na mesma pagina sem recarregar através do ajax.\r\n\r\n![](https://raw.githubusercontent.com/thevalter/CrudPHP/master/a-tabela.png)\r\n![](https://raw.githubusercontent.com/thevalter/CrudPHP/master/form-tabela.png)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
